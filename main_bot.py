@@ -1,7 +1,6 @@
 # langchain modules
 from langchain_openai import ChatOpenAI
 from langchain_community.document_loaders import JSONLoader
-from langchain.embeddings import HuggingFaceEmbeddings
 from langchain_text_splitters import RecursiveJsonSplitter
 from langchain import PromptTemplate
 from langchain.schema.runnable import RunnablePassthrough
