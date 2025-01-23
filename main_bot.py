@@ -6,6 +6,7 @@ from langchain_text_splitters import RecursiveJsonSplitter
 from langchain import PromptTemplate
 from langchain.schema.runnable import RunnablePassthrough
 from langchain.schema.output_parser import StrOutputParser
+from langchain_openai import OpenAIEmbeddings
 # general modules
 import os
 from csv_to_json import csv_to_json
@@ -14,14 +15,16 @@ import pinecone
 from dotenv import load_dotenv
 
 
-class ChatBot():
+class ChatBot:
     # getting API keys
     load_dotenv()
     OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
     os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
 
     # embeddings
-    embeddings = HuggingFaceEmbeddings()
+    embeddings = OpenAIEmbeddings(
+        model="text-embedding-3-large"
+    )
 
     # initialising JSON loader and chunking it
     csv_to_json('CARS_1.csv')
