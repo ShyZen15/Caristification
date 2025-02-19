@@ -2,8 +2,6 @@ import csv
 import json
 import os
 
-file = 'CARS_1.csv'
-
 def csv_to_json(file):
     if os.path.exists('data.json'):
         with open(file, newline='') as csvfile:
