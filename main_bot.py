@@ -2,14 +2,13 @@
 from langchain_openai import ChatOpenAI
 from langchain_community.document_loaders import JSONLoader
 from langchain_text_splitters import RecursiveJsonSplitter
-from langchain import PromptTemplate
+from langchain_core.prompts import PromptTemplate
 from langchain.schema.runnable import RunnablePassthrough
 from langchain.schema.output_parser import StrOutputParser
 from langchain_openai import OpenAIEmbeddings
 # general modules
 import os
-from csv_to_json import csv_to_json
-from langchain.vectorstores import Pinecone
+from langchain_community.vectorstores import Pinecone
 import pinecone
 from dotenv import load_dotenv
 
@@ -26,7 +25,6 @@ class ChatBot:
     )
 
     # initialising JSON loader and chunking it
-    csv_to_json('CARS_1.csv')
     loader = JSONLoader(
         file_path="/Users/shiven/Desktop/chatbottt/data.json",
         jq_schema=".[]",
@@ -67,20 +65,21 @@ class ChatBot:
     The Answer Structure should be in the following way:
 
     1. The Name of the Car
-       Starting Price: The Starting ex showroom price the car has
-       Ending Price/Top Model Price: Car's Top model's ex showroom price
+       Starting Price: Car Price
        Fuel Type: Fuel Type that the car has
-       Seating Capacity: Seating Capacity the car has
+       Seats: No of seats the car has
        Body Type: Body Type of the Car
        Rating: The Rating the car has
        Fuel Tank: The Fuel Tank Capacity the car has
     
        Engine Specifications
+       Engine Layout: Cylinder Layour Present in the car
        Torque: Torque Produced by the car
-       Power: The Horsepower Produced by the car
+       HorsePower: The Horsepower Produced by the car
        Number of Cylinders: Number of Cylinder the car has
        Transmission: Transmission the car has
-       Maximum RPM: The Maximum RPM the car can achieve
+       Total Speed: Total Speed of the car
+       Performance: Performance of the car
 
     use the same structure for the other 2 recommendations 
 
