@@ -28,13 +28,14 @@ class ChatBot:
     # initialising JSON loader and chunking it
     csv_to_json('CARS_1.csv')
     loader = JSONLoader(
-        file_path="data.json",
-        jq_schema=".",
+        file_path="/Users/shiven/Desktop/chatbottt/data.json",
+        jq_schema=".[]",
         text_content=False,
         json_lines=True
     )
     
     data = loader.load()
+    print(data)
 
     splitter = RecursiveJsonSplitter(max_chunk_size=300)
     json_chunks = splitter.split_json(json_data=data)
